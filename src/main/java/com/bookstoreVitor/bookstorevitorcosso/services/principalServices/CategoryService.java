@@ -1,5 +1,7 @@
 package com.bookstoreVitor.bookstorevitorcosso.services.principalServices;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +17,7 @@ public class CategoryService {
     public Category getCategoryById(Long id) throws Exception{
         return categoryRepository.findCategoryById(id).orElseThrow(() -> new Exception("Cant find the Category by the id: " + id));
     }
+
+    public List<Category> getListCategory(){ return this.categoryRepository.findAll(); }
 
 }
