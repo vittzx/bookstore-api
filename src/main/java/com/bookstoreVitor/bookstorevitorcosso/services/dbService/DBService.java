@@ -1,4 +1,4 @@
-package com.bookstoreVitor.bookstorevitorcosso.services;
+package com.bookstoreVitor.bookstorevitorcosso.services.dbService;
 
 import java.util.Arrays;
 
@@ -45,7 +45,7 @@ public class DBService{
 		category3.getBooks().addAll(Arrays.asList(book5, book6));
 		category4.getBooks().addAll(Arrays.asList(book7,book8));
 		
-		bookRepository.saveAll(Arrays.asList(book1,book2,book3,book4,book5,book6,book7,book8,book1));
+		bookRepository.saveAll(Arrays.asList(book1,book2,book3,book4,book5,book6,book7,book8));
 		categoryRepository.saveAll(Arrays.asList(category1,category2,category3,category4));
 	}
 }

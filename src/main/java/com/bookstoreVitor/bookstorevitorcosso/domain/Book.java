@@ -1,6 +1,8 @@
 package com.bookstoreVitor.bookstorevitorcosso.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +29,7 @@ public class Book {
     private String autorship;
     private String description;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "category_id" )
     private Category category;

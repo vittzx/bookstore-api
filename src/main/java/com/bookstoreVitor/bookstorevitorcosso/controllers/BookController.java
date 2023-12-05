@@ -2,7 +2,7 @@ package com.bookstoreVitor.bookstorevitorcosso.controllers;
 
 import java.util.List;
 
-import org.apache.catalina.connector.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bookstoreVitor.bookstorevitorcosso.domain.Book;
 import com.bookstoreVitor.bookstorevitorcosso.repositories.BookRepository;
-import com.bookstoreVitor.bookstorevitorcosso.repositories.CategoryRepository;
+
 
 @RestController
 @RequestMapping("/book")
@@ -21,9 +21,6 @@ public class BookController {
     
     @Autowired
     private BookRepository bookRepository;
-
-    @Autowired
-    private CategoryRepository categoryRepository;
 
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id){
