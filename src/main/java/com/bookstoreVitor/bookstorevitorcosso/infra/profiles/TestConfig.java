@@ -1,4 +1,4 @@
-package com.bookstoreVitor.bookstorevitorcosso.infra;
+package com.bookstoreVitor.bookstorevitorcosso.infra.profiles;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
