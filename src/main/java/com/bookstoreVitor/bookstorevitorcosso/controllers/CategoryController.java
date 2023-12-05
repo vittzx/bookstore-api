@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bookstoreVitor.bookstorevitorcosso.domain.Category;
+import com.bookstoreVitor.bookstorevitorcosso.dtos.category.get.CategoryGeneralDTO;
+import com.bookstoreVitor.bookstorevitorcosso.dtos.category.get.CategorySingleDTO;
 import com.bookstoreVitor.bookstorevitorcosso.services.principalServices.CategoryService;
 
 @RestController
@@ -23,15 +25,15 @@ public class CategoryController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> getCategoryById(@PathVariable Long id) throws Exception{
+    public ResponseEntity<CategorySingleDTO> getCategoryById(@PathVariable Long id) throws Exception{
         Category category = categoryService.getCategoryById(id);
-        return new ResponseEntity<>(category,HttpStatus.OK);
+        return new ResponseEntity<>(new CategorySingleDTO(category),HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<Category>> getAllCategories(){
-        List<Category> categories = this.categoryService.getListCategory();
-        return new ResponseEntity<>(categories,HttpStatus.OK);
+    public ResponseEntity<List<CategoryGeneralDTO>> getAllCategories(){
+        List<CategoryGeneralDTO> categoriesDTO = this.categoryService.getListCategory();
+        return new ResponseEntity<>(categoriesDTO ,HttpStatus.OK);
 
     }
 }
