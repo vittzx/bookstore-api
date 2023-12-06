@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.bookstoreVitor.bookstorevitorcosso.domain.Category;
 import com.bookstoreVitor.bookstorevitorcosso.dtos.category.get.CategoryGeneralDTO;
 import com.bookstoreVitor.bookstorevitorcosso.dtos.category.post.CategoryCreateDTO;
+import com.bookstoreVitor.bookstorevitorcosso.dtos.category.put.CategoryUpdateDTO;
 import com.bookstoreVitor.bookstorevitorcosso.repositories.CategoryRepository;
 import com.bookstoreVitor.bookstorevitorcosso.services.bussinesRule.ValidatitionNameCategory;
 
@@ -39,10 +40,25 @@ public class CategoryService {
         return newCategory;
     }
 
-
+    @Transactional
     private Category createCategory(@Valid CategoryCreateDTO categoryCreateDTO){
         
         return new Category(null, categoryCreateDTO.name(), categoryCreateDTO.description());
+    }
+
+
+    @Transactional
+    public Category updateCategory(@Valid CategoryUpdateDTO categoryUpdateDTO) throws Exception {
+        Category categoryUpdate = getCategoryById(categoryUpdateDTO.id());
+
+        if( categoryUpdateDTO.name() != null){
+            categoryUpdate.setName(categoryUpdateDTO.name());
+        }
+        if( categoryUpdateDTO.description() != null){
+            categoryUpdate.setDescription(categoryUpdateDTO.description());
+        }
+
+        return  categoryUpdate;
     }
 
     

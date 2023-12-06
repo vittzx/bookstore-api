@@ -9,7 +9,7 @@ public record CategoryCreateDTO(
     String name, 
     
     @NotBlank
-    @Size(min = 3, max=200, message = "field description must have a minimum length of 10 characters")
+    @Size(min = 10, max=200, message = "field description must have a minimum length of 10 characters")
     String description) {
     
 }
