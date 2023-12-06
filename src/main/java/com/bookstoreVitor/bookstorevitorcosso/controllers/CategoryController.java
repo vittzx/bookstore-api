@@ -1,5 +1,6 @@
 package com.bookstoreVitor.bookstorevitorcosso.controllers;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,13 +8,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.bookstoreVitor.bookstorevitorcosso.domain.Category;
 import com.bookstoreVitor.bookstorevitorcosso.dtos.category.get.CategoryGeneralDTO;
 import com.bookstoreVitor.bookstorevitorcosso.dtos.category.get.CategorySingleDTO;
+import com.bookstoreVitor.bookstorevitorcosso.dtos.category.post.CategoryCreateDTO;
 import com.bookstoreVitor.bookstorevitorcosso.services.principalServices.CategoryService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/category")
@@ -36,4 +43,15 @@ public class CategoryController {
         return new ResponseEntity<>(categoriesDTO ,HttpStatus.OK);
 
     }
+
+
+    @PostMapping
+    public ResponseEntity<CategorySingleDTO> createCategory(@RequestBody @Valid CategoryCreateDTO categoryCreateDTO, UriComponentsBuilder uribuilder) throws Exception{
+        Category newCategory = this.categoryService.saveCategory(categoryCreateDTO);
+        URI uri = uribuilder.path("/category/{id}").buildAndExpand(newCategory.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(new CategorySingleDTO(newCategory));
+
+    }
+    
 }
