@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.bookstoreVitor.bookstorevitorcosso.domain.Book;
-import com.bookstoreVitor.bookstorevitorcosso.dtos.book.BookGeneralDTO;
+import com.bookstoreVitor.bookstorevitorcosso.dtos.book.get.BookDetailsDTO;
+import com.bookstoreVitor.bookstorevitorcosso.dtos.book.get.BookGeneralDTO;
 import com.bookstoreVitor.bookstorevitorcosso.dtos.book.post.BookCreateDTO;
+import com.bookstoreVitor.bookstorevitorcosso.dtos.book.put.BookUpdateDTO;
 import com.bookstoreVitor.bookstorevitorcosso.services.principalServices.BookService;
 
 import jakarta.validation.Valid;
@@ -51,4 +54,10 @@ public class BookController {
         return ResponseEntity.created(uri).body(new BookGeneralDTO(newBook));
     }
     
+
+    @PutMapping
+    public ResponseEntity<BookDetailsDTO> updateBook(@RequestBody @Valid BookUpdateDTO bookUpdateDTO, Long id) throws Exception{
+        Book updateBook = bookService.updateBook(bookUpdateDTO);
+        return new ResponseEntity<>(new BookDetailsDTO(updateBook),HttpStatus.OK);
+    }
 }

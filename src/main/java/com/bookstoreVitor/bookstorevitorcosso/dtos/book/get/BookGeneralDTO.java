@@ -1,4 +1,4 @@
-package com.bookstoreVitor.bookstorevitorcosso.dtos.book;
+package com.bookstoreVitor.bookstorevitorcosso.dtos.book.get;
 
 import com.bookstoreVitor.bookstorevitorcosso.domain.Book;
 
