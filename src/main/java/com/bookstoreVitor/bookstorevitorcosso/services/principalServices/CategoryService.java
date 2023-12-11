@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bookstoreVitor.bookstorevitorcosso.domain.Book;
 import com.bookstoreVitor.bookstorevitorcosso.domain.Category;
 import com.bookstoreVitor.bookstorevitorcosso.dtos.category.delete.CategoryDeleteDTO;
 import com.bookstoreVitor.bookstorevitorcosso.dtos.category.get.CategoryGeneralDTO;
@@ -87,6 +88,11 @@ public class CategoryService {
       throw new Exception("Not possible find any category with this id: +" + categoryDeleteDTO.id() +" or name: "+ categoryDeleteDTO.name());
 
 
+    }
+
+
+    public void addBookCategory(Category categoryBook, Book newBook) {
+        categoryBook.getBooks().add(newBook);
     }
 
     

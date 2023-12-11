@@ -53,9 +53,7 @@ public class CategoryController {
     public ResponseEntity<CategorySingleDTO> createCategory(@RequestBody @Valid CategoryCreateDTO categoryCreateDTO, UriComponentsBuilder uribuilder) throws Exception{
         Category newCategory = this.categoryService.saveCategory(categoryCreateDTO);
         URI uri = uribuilder.path("/category/{id}").buildAndExpand(newCategory.getId()).toUri();
-
         return ResponseEntity.created(uri).body(new CategorySingleDTO(newCategory));
-
     }
 
 

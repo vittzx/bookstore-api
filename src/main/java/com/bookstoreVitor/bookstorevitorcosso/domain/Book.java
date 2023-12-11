@@ -1,6 +1,7 @@
 package com.bookstoreVitor.bookstorevitorcosso.domain;
 
 
+import com.bookstoreVitor.bookstorevitorcosso.dtos.book.post.BookCreateDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Book {
+
+    public Book(@Valid BookCreateDTO bookCreateDTO, Category category) {
+        this.name = bookCreateDTO.name();
+        this.autorship = bookCreateDTO.autorship();
+        this.description = bookCreateDTO.description();
+        this.category = category;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
