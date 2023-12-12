@@ -9,6 +9,7 @@ import com.bookstoreVitor.bookstorevitorcosso.domain.Book;
 import com.bookstoreVitor.bookstorevitorcosso.domain.Category;
 import com.bookstoreVitor.bookstorevitorcosso.dtos.book.post.BookCreateDTO;
 import com.bookstoreVitor.bookstorevitorcosso.dtos.book.put.BookUpdateDTO;
+import com.bookstoreVitor.bookstorevitorcosso.dtos.book.put.BookUpdtNoIdDTO;
 import com.bookstoreVitor.bookstorevitorcosso.repositories.BookRepository;
 
 import jakarta.transaction.Transactional;
@@ -46,16 +47,18 @@ public class BookService {
     public Book updateBook(@Valid BookUpdateDTO bookUpdateDTO) throws Exception{
         Book updateBook = getBookById(bookUpdateDTO.id());
 
-        if(bookUpdateDTO.name() != null){
-            updateBook.setName(bookUpdateDTO.name());
-        }
-        if(bookUpdateDTO.autorship() != null){
-            updateBook.setAutorship(bookUpdateDTO.autorship());
-        }
-        if(bookUpdateDTO.description() != null){
-            updateBook.setDescription(bookUpdateDTO.description());
-        }
+        updateBook.updateBook(bookUpdateDTO);
 
+        return updateBook;
+    }
+
+
+    @Transactional
+    public Book updateBookById(@Valid BookUpdtNoIdDTO bookUpdtNoIdDTO, Long id) throws Exception {
+        Book updateBook = getBookById(id);
+
+        updateBook.updateBook(bookUpdtNoIdDTO);
+        
         return updateBook;
     }
 

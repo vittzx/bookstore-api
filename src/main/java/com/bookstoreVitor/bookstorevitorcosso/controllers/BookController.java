@@ -22,6 +22,7 @@ import com.bookstoreVitor.bookstorevitorcosso.dtos.book.get.BookDetailsDTO;
 import com.bookstoreVitor.bookstorevitorcosso.dtos.book.get.BookGeneralDTO;
 import com.bookstoreVitor.bookstorevitorcosso.dtos.book.post.BookCreateDTO;
 import com.bookstoreVitor.bookstorevitorcosso.dtos.book.put.BookUpdateDTO;
+import com.bookstoreVitor.bookstorevitorcosso.dtos.book.put.BookUpdtNoIdDTO;
 import com.bookstoreVitor.bookstorevitorcosso.services.principalServices.BookService;
 
 import jakarta.validation.Valid;
@@ -56,8 +57,14 @@ public class BookController {
     
 
     @PutMapping
-    public ResponseEntity<BookDetailsDTO> updateBook(@RequestBody @Valid BookUpdateDTO bookUpdateDTO, Long id) throws Exception{
+    public ResponseEntity<BookDetailsDTO> updateBook(@RequestBody @Valid BookUpdateDTO bookUpdateDTO) throws Exception{
         Book updateBook = bookService.updateBook(bookUpdateDTO);
+        return new ResponseEntity<>(new BookDetailsDTO(updateBook),HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<BookDetailsDTO> updateBookById(@RequestBody @Valid BookUpdtNoIdDTO bookUpdtNoIdDTO , @PathVariable Long id) throws Exception{
+        Book updateBook = bookService.updateBookById(bookUpdtNoIdDTO, id);
         return new ResponseEntity<>(new BookDetailsDTO(updateBook),HttpStatus.OK);
     }
 }

@@ -2,6 +2,8 @@ package com.bookstoreVitor.bookstorevitorcosso.domain;
 
 
 import com.bookstoreVitor.bookstorevitorcosso.dtos.book.post.BookCreateDTO;
+import com.bookstoreVitor.bookstorevitorcosso.dtos.book.put.BookUpdateDTO;
+import com.bookstoreVitor.bookstorevitorcosso.dtos.book.put.BookUpdtNoIdDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -43,4 +45,31 @@ public class Book {
     @JoinColumn(name = "category_id" )
     private Category category;
 
+
+
+    public void updateBook(BookUpdateDTO bookUpdateDTO){
+        if(bookUpdateDTO.name() != null){
+            this.setName(bookUpdateDTO.name());
+        }
+        if(bookUpdateDTO.autorship() != null){
+            this.setAutorship(bookUpdateDTO.autorship());
+        }
+        if(bookUpdateDTO.description() != null){
+            this.setDescription(bookUpdateDTO.description());
+        }
+    }
+
+
+
+    public void updateBook(@Valid BookUpdtNoIdDTO bookUpdtNoIdDTO) {
+        if(bookUpdtNoIdDTO.name() != null){
+            this.setName(bookUpdtNoIdDTO.name());
+        }
+        if(bookUpdtNoIdDTO.autorship() != null){
+            this.setAutorship(bookUpdtNoIdDTO.autorship());
+        }
+        if(bookUpdtNoIdDTO.description() != null){
+            this.setDescription(bookUpdtNoIdDTO.description());
+        }
+    }
 }
