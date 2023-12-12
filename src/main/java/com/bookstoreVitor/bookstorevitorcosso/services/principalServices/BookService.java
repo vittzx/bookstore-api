@@ -62,6 +62,11 @@ public class BookService {
         return updateBook;
     }
 
+    public void deleteBook(Long id) throws Exception{
+        Book deletedBook = getBookById(id);
+        this.bookRepository.delete(deletedBook);
+    }
+
 
 
 }
