@@ -90,6 +90,13 @@ public class CategoryService {
 
     }
 
+    @Transactional
+    public void deleteCategory(Long id) throws Exception {
+        Category deletedCategory = getCategoryById(id);
+        categoryRepository.delete(deletedCategory);
+    }
+
+
 
     public void addBookCategory(Category categoryBook, Book newBook) {
         categoryBook.getBooks().add(newBook);
