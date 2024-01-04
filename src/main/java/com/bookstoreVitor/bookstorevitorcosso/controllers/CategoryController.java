@@ -50,7 +50,7 @@ public class CategoryController {
 
     }
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public ResponseEntity<CategorySingleDTO> createCategory(@RequestBody @Valid CategoryCreateDTO categoryCreateDTO, UriComponentsBuilder uribuilder) throws Exception{
         Category newCategory = this.categoryService.saveCategory(categoryCreateDTO);
@@ -58,7 +58,7 @@ public class CategoryController {
         return ResponseEntity.created(uri).body(new CategorySingleDTO(newCategory));
     }
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping
     public ResponseEntity<CategorySingleDTO> updateCategory(@RequestBody @Valid CategoryUpdateDTO categoryUpdateDTO) throws Exception{
 
@@ -66,7 +66,7 @@ public class CategoryController {
         return new ResponseEntity<>(new CategorySingleDTO(updateCategory),HttpStatus.OK);
 
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping
     public ResponseEntity<String> deleteCategory(@RequestBody @Valid CategoryDeleteDTO categoryDeleteDTO) throws Exception{
         this.categoryService.deleteCategory(categoryDeleteDTO);
