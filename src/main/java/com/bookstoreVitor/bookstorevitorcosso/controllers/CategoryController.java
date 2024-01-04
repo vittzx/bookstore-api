@@ -66,6 +66,16 @@ public class CategoryController {
         return new ResponseEntity<>(new CategorySingleDTO(updateCategory),HttpStatus.OK);
 
     }
+
+        
+    @PutMapping("/{id}")
+    public ResponseEntity<CategorySingleDTO> updateCategoryById(@RequestBody @Valid CategoryUpdateDTO categoryUpdateDTO , @PathVariable Long id) throws Exception{
+        Category categoryUpdate = categoryService.updateCategoryById(categoryUpdateDTO, id);
+        return new ResponseEntity<>(new CategorySingleDTO(categoryUpdate),HttpStatus.OK);
+    }
+    
+
+
     
     @DeleteMapping
     public ResponseEntity<String> deleteCategory(@RequestBody @Valid CategoryDeleteDTO categoryDeleteDTO) throws Exception{

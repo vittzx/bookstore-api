@@ -67,6 +67,19 @@ public class CategoryService {
 
         return  categoryUpdate;
     }
+    @Transactional
+    public Category updateCategoryById(@Valid CategoryUpdateDTO categoryUpdateDTO, Long id ) throws Exception {
+        Category categoryUpdate = getCategoryById(id);
+
+        if( categoryUpdateDTO.name() != null){
+            categoryUpdate.setName(categoryUpdateDTO.name());
+        }
+        if( categoryUpdateDTO.description() != null){
+            categoryUpdate.setDescription(categoryUpdateDTO.description());
+        }
+
+        return  categoryUpdate;
+    }
 
 
     @Transactional
