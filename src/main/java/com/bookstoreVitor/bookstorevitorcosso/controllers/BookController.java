@@ -32,24 +32,24 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/category/book")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class BookController {
 
     @Autowired
     private BookService bookService;
-    @CrossOrigin(origins = "http://localhost:4200")
+    
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id) throws Exception{
         Book book = bookService.getBookById(id);
         return new ResponseEntity<Book>(book, HttpStatus.OK);
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+    
     @GetMapping
     public ResponseEntity<List<Book>> getAllBooks(){
         List<Book> books = bookService.getListBooks();
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+    
     @PostMapping
     public ResponseEntity<BookGeneralDTO> createBook(@RequestBody @Valid BookCreateDTO bookCreateDTO, @RequestParam(value="category", defaultValue = "0") Long category_id, UriComponentsBuilder uriBuilder) throws Exception{
 
@@ -58,19 +58,19 @@ public class BookController {
         return ResponseEntity.created(uri).body(new BookGeneralDTO(newBook));
     }
     
-    @CrossOrigin(origins = "http://localhost:4200")
+    
     @PutMapping
     public ResponseEntity<BookDetailsDTO> updateBook(@RequestBody @Valid BookUpdateDTO bookUpdateDTO) throws Exception{
         Book updateBook = bookService.updateBook(bookUpdateDTO);
         return new ResponseEntity<>(new BookDetailsDTO(updateBook),HttpStatus.OK);
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+    
     @PutMapping("/{id}")
     public ResponseEntity<BookDetailsDTO> updateBookById(@RequestBody @Valid BookUpdtNoIdDTO bookUpdtNoIdDTO , @PathVariable Long id) throws Exception{
         Book updateBook = bookService.updateBookById(bookUpdtNoIdDTO, id);
         return new ResponseEntity<>(new BookDetailsDTO(updateBook),HttpStatus.OK);
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) throws Exception{
         this.bookService.deleteBook(id);
