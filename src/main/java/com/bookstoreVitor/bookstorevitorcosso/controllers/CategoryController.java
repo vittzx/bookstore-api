@@ -28,8 +28,8 @@ import com.bookstoreVitor.bookstorevitorcosso.services.principalServices.Categor
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/bookstore-front/category")
-@CrossOrigin(origins = {"http://localhost:4200","https://vittzx.github.io"})
+@RequestMapping("/category")
+@CrossOrigin(origins = "https://vittzx.github.io/bookstore-front")
 public class CategoryController {
 
 
