@@ -28,7 +28,7 @@ import com.bookstoreVitor.bookstorevitorcosso.services.principalServices.Categor
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/bookstore-front/category")
+@RequestMapping("/category")
 @CrossOrigin("*")
 public class CategoryController {
 
