@@ -29,7 +29,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/bookstore-front/category")
-@CrossOrigin(origins = "https://vittzx.github.io")
+@CrossOrigin(origins = "https://vittzx.github.io/bookstore-front")
 public class CategoryController {
 
 
