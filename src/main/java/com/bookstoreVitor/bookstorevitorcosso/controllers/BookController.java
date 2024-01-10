@@ -31,8 +31,8 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping("/category/book")
-@CrossOrigin(origins = {"http://localhost:4200", "https://vittzx.github.io/bookstore-front/"})
+@RequestMapping("/bookstore-front/category/book")
+@CrossOrigin(origins = {"http://localhost:4200", "https://vittzx.github.io"})
 public class BookController {
 
     @Autowired
